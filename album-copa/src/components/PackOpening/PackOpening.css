@@ -1,0 +1,31 @@
+.pack-container {
+  padding: 2rem;
+}
+
+.open-pack-btn {
+  background: #2563eb;
+  color: white;
+
+  border: none;
+  padding: 1rem 2rem;
+
+  border-radius: 10px;
+  cursor: pointer;
+
+  font-size: 1rem;
+  font-weight: bold;
+
+  margin-bottom: 2rem;
+
+  transition: 0.2s;
+}
+
+.open-pack-btn:hover {
+  background: #1d4ed8;
+}
+
+.players-grid {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
