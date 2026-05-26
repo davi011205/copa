@@ -73,3 +73,22 @@ export async function getAllPlayers() {
     return [];
   }
 }
+
+export async function getPlayersByTeam(id: string) {
+  try{
+
+    const jogadoresRef = collection(db, "selecoes", id, "jogadores");
+    const jogadores = await getDocs(jogadoresRef);
+    const players = [];
+    const jogadoresDoc = jogadores.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+  
+    players.push(...jogadoresDoc);
+    return players;
+  } catch(error) {
+    console.log("nao foi possivel carregar os jogadores dessa selecao", error);
+    return [];
+  }
+}
