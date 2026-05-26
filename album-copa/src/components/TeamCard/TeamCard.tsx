@@ -1,18 +1,25 @@
 import type {Team}  from "../../models/Team";
-import "../PlayerCard/PlayerCard.css";
+import "./TeamCard.css";
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   team: Team;
 }
+
 const PlayerCard = ({ team }: Props) => {
+    const navigate = useNavigate();
+    const handleNavigate = () => {
+        navigate(`/album/${team.id}`);
+    };
+
     return (
-        <div className='card' id={team.id}>  
-            <div className="card-image-container">
-                <img src={team.bandeira} alt="Jogador" className="card-image" />
+        <div className='team-card' id={team.id} onClick={handleNavigate}>  
+            <div className="team-card-image-container">
+                <img src={team.bandeira} alt="Jogador" className="team-card-image" />
             </div>
 
-            <div className="card-footer">
-                <div className="player-name">{team.name}</div>
+            <div className="team-card-footer">
+                <div className="team-name">{team.name}</div>
             </div>
         </div>
     );
