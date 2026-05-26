@@ -5,5 +5,6 @@ export interface Player {
   position: string;
   rating: number;
   image: string;
+  encontrado: boolean;
   // rarity: "common" | "rare" | "legend"
 }
