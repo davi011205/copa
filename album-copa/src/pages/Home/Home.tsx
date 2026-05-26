@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 
-import type { Player } from "../../models/Player";
 import Navbar from "../../components/NavBar/Navbar";
 import PackOpening from "../../components/PackOpening/PackOpening";
-import PlayerCard from "../../components/PlayerCard/PlayerCard";
-import { getAllPlayers } from "../../services/firebase";
+import TeamCard from "../../components/TeamCard/TeamCard";
+import { getAllTeams } from "../../services/firebase";
+import type { Team } from "../../models/Team";
 
 const Home = () => {
-    const [players, setPlayers] = useState<Player[]>([]);
+    const [teams, setTeams] = useState<Team[]>([]);
     useEffect(() => {
-        async function carregarJogadores() {
-            const dados = await getAllPlayers();
-            setPlayers(dados as Player[]);
+        async function carregarSelecoes() {
+            const dados = await getAllTeams();
+            setTeams(dados);
         }
 
-        carregarJogadores();
+        carregarSelecoes();
     }, []);
     
     return (
@@ -29,10 +29,10 @@ const Home = () => {
                     justifyContent: "center",
                 }}
                 >
-                {players.map((player) => (
-                    <PlayerCard
-                        key={player.id}
-                        player={player}
+                {teams.map((team) => (
+                    <TeamCard
+                        key={team.id}
+                        team={team}
                     />
                 ))}
             </div>

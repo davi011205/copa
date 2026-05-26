@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, type DocumentData } from "firebase/firestore";
+import type { Team } from "../models/Team";
 import { 
   FIREBASE_API_KEY,
   FIREBASE_AUTH_DOMAIN,
@@ -20,6 +21,27 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+
+export async function getAllTeams() {
+  try {
+    const selecoesRef = collection(db, "selecoes");
+    const selecoes = await getDocs(selecoesRef);
+    
+    const teams: Team[] = [];
+
+    selecoes.docs.map((doc) => {
+      teams.push({
+        id: doc.id,
+        ...doc.data()
+      } as Team);
+    });
+    return teams;    
+  } catch(error) {
+    console.error("Erro ao buscar selecoes:", error);
+    return [];
+  }
+}
+
 export async function getAllPlayers() {
   try {
     const selecoesRef = collection(db, "selecoes");
