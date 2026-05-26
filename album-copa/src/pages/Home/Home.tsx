@@ -19,8 +19,6 @@ const Home = () => {
     
     return (
         <div className="home">
-            <Navbar></Navbar>
-            <PackOpening></PackOpening>
             <div
                 style={{
                     display: "flex",
