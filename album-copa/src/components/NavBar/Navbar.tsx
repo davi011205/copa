@@ -14,12 +14,14 @@ const Navbar = () => {
     navigate(`/home/meu-album`);
   };
 
+  const handleNavigateHome = () => {
+    navigate(`/home`);
+  };
+
   return (
     <nav className="navbar">
-      <h1 className="logo">
-        <a style={{ textDecoration: "none" }} href="/home">
+      <h1 className="logo" onClick={handleNavigateHome}>
           World Album
-        </a>
       </h1>
 
       <ul className="nav-links">
