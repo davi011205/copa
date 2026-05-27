@@ -10,6 +10,10 @@ const Navbar = () => {
     navigate("/");
   }
 
+  const handleNavigate = () => {
+    navigate(`/home/meu-album`);
+  };
+
   return (
     <nav className="navbar">
       <h1 className="logo">
@@ -19,7 +23,7 @@ const Navbar = () => {
       </h1>
 
       <ul className="nav-links">
-        <li>Meu Álbum</li>
+        <li onClick={handleNavigate}>Meu Álbum</li>
         <li onClick={logOutUser}>Sair</li>
       </ul>
     </nav>
