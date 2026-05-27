@@ -1,16 +1,13 @@
 import './App.css'
 import { RouterProvider } from 'react-router-dom'
-import { router } from './routes'
-import Navbar from './components/NavBar/Navbar'
-import PackOpening from './components/PackOpening/PackOpening'
+import { router } from './routes/routes'
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   return (
-    <>
-      <Navbar></Navbar>
-      <PackOpening></PackOpening>
+    <AuthProvider>
       <RouterProvider router={router}></RouterProvider>
-    </>
+    </AuthProvider>
   )
 }
 

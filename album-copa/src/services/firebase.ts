@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, type DocumentData } from "firebase/firestore";
+import { getFirestore, collection, getDocs} from "firebase/firestore";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import type { Team } from "../models/Team";
 import { 
   FIREBASE_API_KEY,
@@ -20,7 +21,11 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+const db = getFirestore(app);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+export {db, auth, googleProvider}
+
 
 export async function getAllTeams() {
   try {
@@ -76,7 +81,6 @@ export async function getAllPlayers() {
 
 export async function getPlayersByTeam(id: string) {
   try{
-
     const jogadoresRef = collection(db, "selecoes", id, "jogadores");
     const jogadores = await getDocs(jogadoresRef);
     const players = [];
