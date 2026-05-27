@@ -1,8 +1,14 @@
 import { useState } from 'react';
 import { signInWithPopup } from 'firebase/auth';
-import { auth, googleProvider } from '../../services/firebase';
 import { useNavigate } from 'react-router-dom';
 import "./Login.css"
+import { auth, googleProvider, db } from '../../services/firebase';
+import {
+  doc,
+  getDoc,
+  setDoc,
+  collection
+} from "firebase/firestore";
 
 function Login() {
     const [loading, setLoading] = useState(false);
@@ -11,7 +17,30 @@ function Login() {
     async function handleGoogleLogin() {
     try {
         setLoading(true);
-        await signInWithPopup(auth, googleProvider);
+        const login = await signInWithPopup(auth, googleProvider);
+        const userRef = doc(db, "users", login.user.uid);
+        const user = await getDoc(userRef);
+
+        if (!user.exists()) {
+
+            await setDoc(userRef, {
+                uid: login.user.uid,
+                email: login.user.email,
+            });
+
+            const cartaRef = doc(
+                collection(userRef, "figurinhas")
+            );
+
+            await setDoc(cartaRef, {
+                country: "",
+                image: "",
+                name: "",
+                position: ""
+            });
+
+            console.log("Usuário criado!");
+        }
         navigate('/home', {
             replace: true
         });
