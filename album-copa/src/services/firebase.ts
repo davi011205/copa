@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs} from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc} from "firebase/firestore";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import type { Team } from "../models/Team";
 import { 
@@ -93,6 +93,25 @@ export async function getPlayersByTeam(id: string) {
     return players;
   } catch(error) {
     console.log("nao foi possivel carregar os jogadores dessa selecao", error);
+    return [];
+  }
+}
+
+
+export async function getPlayersByUser(id: string){
+  try{
+    const playersRef = collection(db, "users", id, "figurinhas");
+    const jogadores = await getDocs(playersRef);
+    const players = [];
+    const playersDoc = jogadores.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+  
+    players.push(...playersDoc);
+    return players;
+  } catch(error) {
+    console.log("nao foi possivel carregar os jogadores", error);
     return [];
   }
 }
