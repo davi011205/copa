@@ -8,7 +8,6 @@ const PlayerCard = ({ player }: Props) => {
     return (
         <div className='card'>
             <div className="card-header">
-                <div className="card-attributes">{player.rating}</div> 
                 <div className="player-position">{player.position}</div> 
             </div>
 

@@ -6,7 +6,7 @@ interface Props {
   team: Team;
 }
 
-const PlayerCard = ({ team }: Props) => {
+const TeamCard = ({ team }: Props) => {
     const navigate = useNavigate();
     const handleNavigate = () => {
         navigate(`/home/album/${team.id}`);
@@ -25,4 +25,4 @@ const PlayerCard = ({ team }: Props) => {
     );
 };
 
-export default PlayerCard;
+export default TeamCard;

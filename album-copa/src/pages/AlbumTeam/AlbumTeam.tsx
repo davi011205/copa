@@ -5,7 +5,6 @@ import type { Player } from "../../models/Player";
 import PlayerCard from "../../components/PlayerCard/PlayerCard";
 const AlbumTeam = () => {
     const { id } = useParams();
-    console.log(id)
     const [players, setPlayers] = useState<Player[]>([]);
     useEffect(() => {
         async function carregarJogadores() {
