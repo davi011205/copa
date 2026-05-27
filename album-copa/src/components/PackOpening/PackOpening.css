@@ -1,31 +1,106 @@
 .pack-container {
-  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
 }
 
 .open-pack-btn {
-  background: #2563eb;
+  background: linear-gradient(135deg, #ffcc00, #ff8800);
+  color: #111;
+  border: none;
+  padding: 14px 28px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.open-pack-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.95;
+}
+
+/* MODAL */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+}
+
+.modal-content {
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 1000px;
+
+  position: relative;
+
+  box-shadow: 0 0 25px rgba(255, 204, 0, 0.3);
+
+  animation: modalAppear 0.25s ease;
+}
+
+.modal-title {
+  color: white;
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 28px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  background: #ff4444;
   color: white;
 
   border: none;
-  padding: 1rem 2rem;
+  width: 35px;
+  height: 35px;
 
-  border-radius: 10px;
+  border-radius: 50%;
   cursor: pointer;
 
-  font-size: 1rem;
+  font-size: 18px;
   font-weight: bold;
-
-  margin-bottom: 2rem;
 
   transition: 0.2s;
 }
 
-.open-pack-btn:hover {
-  background: #1d4ed8;
+.close-btn:hover {
+  transform: scale(1.1);
+  background: #ff2222;
 }
 
 .players-grid {
   display: flex;
-  gap: 1.5rem;
+  justify-content: center;
+  gap: 20px;
   flex-wrap: wrap;
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

@@ -3,16 +3,17 @@ import type { Player } from "../../models/Player";
 import PlayerCard from "../PlayerCard/PlayerCard";
 import "./PackOpening.css";
 
-
 import { getAllPlayers } from "../../services/firebase";
 
 const PackOpening = () => {
   const [openedPlayers, setOpenedPlayers] = useState<Player[]>([]);
   const [players, setPlayers] = useState<Player[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
     async function carregarJogadores() {
-        const dados = await getAllPlayers();
-        setPlayers(dados as Player[]);
+      const dados = await getAllPlayers();
+      setPlayers(dados as Player[]);
     }
 
     carregarJogadores();
@@ -26,6 +27,11 @@ const PackOpening = () => {
     const selected = shuffled.slice(0, 3);
 
     setOpenedPlayers(selected);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -34,11 +40,23 @@ const PackOpening = () => {
         Abrir Pacote
       </button>
 
-      <div className="players-grid">
-        {openedPlayers.map((player) => (
-          <PlayerCard key={player.id} player={player} />
-        ))}
-      </div>
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button className="close-btn" onClick={closeModal}>
+              ✕
+            </button>
+
+            <h2 className="modal-title">Pacote Aberto!</h2>
+
+            <div className="players-grid">
+              {openedPlayers.map((player) => (
+                <PlayerCard key={player.id} player={player} />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
