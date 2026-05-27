@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-import Navbar from "../../components/NavBar/Navbar";
-import PackOpening from "../../components/PackOpening/PackOpening";
 import TeamCard from "../../components/TeamCard/TeamCard";
 import { getAllTeams } from "../../services/firebase";
 import type { Team } from "../../models/Team";

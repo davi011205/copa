@@ -9,7 +9,7 @@ interface Props {
 const PlayerCard = ({ team }: Props) => {
     const navigate = useNavigate();
     const handleNavigate = () => {
-        navigate(`/album/${team.id}`);
+        navigate(`/home/album/${team.id}`);
     };
 
     return (
