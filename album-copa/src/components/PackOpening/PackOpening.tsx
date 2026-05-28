@@ -38,6 +38,8 @@ const PackOpening = () => {
 
   async function addOnAlbum() {
     await addPlayersOnAlbum(openedPlayers, user?.uid as string);
+    setIsModalOpen(false);
+    window.location.reload();
   }
 
   return (

@@ -128,7 +128,6 @@ export async function addPlayersOnAlbum(players:Player[], id: string) {
       });
     }
 
-    alert("jogadores adicionadas ao álbum!");
   } catch (error) {
     console.error("Erro ao salvar cartas:", error);
   }
