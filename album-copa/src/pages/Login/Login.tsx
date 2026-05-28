@@ -7,7 +7,6 @@ import {
   doc,
   getDoc,
   setDoc,
-  collection
 } from "firebase/firestore";
 
 function Login() {
