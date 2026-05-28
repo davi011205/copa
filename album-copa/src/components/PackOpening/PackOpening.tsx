@@ -54,6 +54,9 @@ const PackOpening = () => {
                 <PlayerCard key={player.id} player={player} />
               ))}
             </div>
+            <button className="add-album-btn">
+              Adicionar ao álbum
+            </button>
           </div>
         </div>
       )}

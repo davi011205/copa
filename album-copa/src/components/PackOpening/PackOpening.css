@@ -45,12 +45,15 @@
   border-radius: 20px;
   width: 90%;
   max-width: 1000px;
+  max-height: 90vh;
 
   position: relative;
 
   box-shadow: 0 0 25px rgba(255, 204, 0, 0.3);
 
   animation: modalAppear 0.25s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-title {
@@ -86,11 +89,48 @@
   background: #ff2222;
 }
 
+/* GRID DOS JOGADORES */
+
 .players-grid {
   display: flex;
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
+
+  overflow-y: auto; 
+  max-height: 500px; 
+
+  padding-right: 10px;
+}
+
+.players-grid .card {
+  height: 350px;
+}
+
+/* BOTÃO */
+
+.add-album-btn {
+  margin-top: 24px;
+  align-self: center;
+
+  background: linear-gradient(135deg, #ffcc00, #ff8800);
+  color: white;
+
+  border: none;
+  padding: 14px 28px;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  border-radius: 12px;
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.add-album-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.95;
 }
 
 @keyframes modalAppear {

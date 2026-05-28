@@ -20,7 +20,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <h1 className="logo" onClick={handleNavigateHome}>
+      <h1 className="logo" onClick={handleNavigateHome} style={{cursor: "pointer"}}>
           World Album
       </h1>
 
