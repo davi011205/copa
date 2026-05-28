@@ -3,12 +3,14 @@ import type { Player } from "../../models/Player";
 import PlayerCard from "../PlayerCard/PlayerCard";
 import "./PackOpening.css";
 
-import { getAllPlayers } from "../../services/firebase";
+import { addPlayersOnAlbum, getAllPlayers } from "../../services/firebase";
+import { useAuth } from "../../contexts/AuthContext";
 
 const PackOpening = () => {
   const [openedPlayers, setOpenedPlayers] = useState<Player[]>([]);
   const [players, setPlayers] = useState<Player[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     async function carregarJogadores() {
@@ -34,6 +36,10 @@ const PackOpening = () => {
     setIsModalOpen(false);
   };
 
+  async function addOnAlbum() {
+    await addPlayersOnAlbum(openedPlayers, user?.uid as string);
+  }
+
   return (
     <div className="pack-container">
       <button onClick={openPack} className="open-pack-btn">
@@ -54,7 +60,7 @@ const PackOpening = () => {
                 <PlayerCard key={player.id} player={player} />
               ))}
             </div>
-            <button className="add-album-btn">
+            <button className="add-album-btn" onClick={addOnAlbum}>
               Adicionar ao álbum
             </button>
           </div>

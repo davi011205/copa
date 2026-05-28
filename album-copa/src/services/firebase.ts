@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs} from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc} from "firebase/firestore";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import type { Team } from "../models/Team";
 import { 
@@ -10,6 +10,7 @@ import {
   FIREBASE_MESSAGING_SENDER_ID,
   FIREBASE_APP_ID
 } from "../config/env";
+import type { Player } from "../models/Player";
 
 const firebaseConfig = {
   apiKey: FIREBASE_API_KEY,
@@ -113,5 +114,22 @@ export async function getPlayersByUser(id: string){
   } catch(error) {
     console.log("nao foi possivel carregar os jogadores", error);
     return [];
+  }
+}
+
+export async function addPlayersOnAlbum(players:Player[], id: string) {
+  try {
+    for (const player of players) {
+      await addDoc(collection(db, "users", id,  "figurinhas"), {
+        country: player.country,
+        image: player.image,
+        name: player.name,
+        position: player.position,
+      });
+    }
+
+    alert("jogadores adicionadas ao álbum!");
+  } catch (error) {
+    console.error("Erro ao salvar cartas:", error);
   }
 }
