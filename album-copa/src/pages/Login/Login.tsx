@@ -28,17 +28,6 @@ function Login() {
                 email: login.user.email,
             });
 
-            const cartaRef = doc(
-                collection(userRef, "figurinhas")
-            );
-
-            await setDoc(cartaRef, {
-                country: "",
-                image: "",
-                name: "",
-                position: ""
-            });
-
             console.log("Usuário criado!");
         }
         navigate('/home', {
